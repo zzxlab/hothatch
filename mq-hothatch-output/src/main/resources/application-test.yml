@@ -1,17 +1,10 @@
 spring:
   rabbitmq:
-    addresses: 192.168.4.121:5672,192.168.4.121:5672,192.168.4.122:5672
-    port: 5672
+    addresses: 192.168.4.120:5672,192.168.4.121:5672,192.168.4.122:5672
     username: admin
     password: jUmp1nqUeUe
     virtual-host: /
     publisher-confirms: true
-    listener:
-      simple:
-        acknowledge-mode: manual
-        concurrency: 1
-        max-concurrency: 10
-        prefetch: 2
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
