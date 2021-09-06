@@ -1,0 +1,11 @@
+server:
+  port: 8087
+spring:
+  profiles:
+    active: @profile.active@
+  application:
+    name: mq-hothatch-output
+logging:
+  path: /data/logs/${spring.application.name}
+mybatis:
+  mapper-locations: classpath:com/hiersun/output/mapper/*.xml

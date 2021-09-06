@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--加载配置文件，为下面读取数据库信息准备-->
+    <properties resource="datasource.properties"/>
+
+    <!--defaultModelType="flat" 大数据字段，不分表 -->
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value=""/>
+        <property name="endingDelimiter" value=""/>
+        <property name="javaFileEncoding" value="utf-8"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <!-- 查询单条数据插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
+        <!-- MySQL分页插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin"/>
+        <!-- 数据Model链式构建插件 -->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.ModelBuilderPlugin"/>-->
+        <!-- Example Criteria 增强插件 -->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin"/>-->
+        <!-- Example 目标包修改插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
+            <!-- 修改Example类生成到目标包下 -->
+            <property name="targetPackage" value="com.hiersun.output.example"/>
+        </plugin>
+        <!-- 批量插入插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin"/>
+        <!-- 逻辑删除插件 -->
+        <!--        <plugin type="com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin">-->
+        <!--            &lt;!&ndash; 这里配置的是全局逻辑删除列和逻辑删除值，当然在table中配置的值会覆盖该全局配置 &ndash;&gt;-->
+        <!--            &lt;!&ndash; 逻辑删除列类型只能为数字、字符串或者布尔类型 &ndash;&gt;-->
+        <!--            <property name="logicalDeleteColumn" value="del_flag"/>-->
+        <!--            &lt;!&ndash; 未设置该属性或者该属性的值为null或者NULL,逻辑删除时会把该字段置为NULL。 &ndash;&gt;-->
+        <!--            <property name="logicalDeleteValue" value="9"/>-->
+        <!--        </plugin>-->
+        <!-- 数据Model属性对应Column获取插件 -->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>-->
+        <!-- 存在即更新插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.UpsertPlugin"/>
+
+
+        <!-- 注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true"/> <!-- 是否生成注释代时间戳-->
+        </commentGenerator>
+
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="${spring.datasource.druid.driver-class-name}"
+                        connectionURL="${spring.datasource.druid.url}"
+                        userId="${spring.datasource.druid.username}"
+                        password="${spring.datasource.druid.password}">
+        </jdbcConnection>
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.hiersun.output.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成mapxml文件 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/com/hiersun/output">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 生成mapxml对应client，也就是接口dao -->
+        <javaClientGenerator targetPackage="com.hiersun.output.dao" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!--生成表-->
+        <table tableName="tx_info" enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

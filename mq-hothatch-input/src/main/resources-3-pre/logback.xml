@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <conversionRule conversionWord="ip" converterClass="com.hiersun.exception.client.logback.IpConverter"/>
+    <property name="log.home" value="/datalog/app-logs"/>
+    <property name="log.app.name" value="oms-admin"/>
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"/>
+
+    <property name="log.name" value="oms-admin"/>
+    <property name="log.path" value="logs"/>
+    <!-- 控制台输出日志 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出日志 (文件大小策略进行文件输出，每天产生一个日志文件给异常监控平台进行分析) -->
+    <appender name="filelog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${log.name}.log</file>
+        <!-- 日志文件rolling策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${log.name}_%d{yyyy-MM-dd}_log.zip</fileNamePattern>
+        </rollingPolicy>
+        <!--日志输出格式-->
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.CustomTimeBasedRollingPolicy">
+            <fileNamePattern>${log.home}/${log.app.name}/%d{yyyyMMdd}-%ip.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.mybatis" level="INFO"/>
+    <logger name="mybatis.mapper" level="DEBUG"/>
+    <logger name="com.hiersun" level="DEBUG"/>
+    <logger name="org.redisson" level="WARN"/>
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="filelog"/>
+        <appender-ref ref="file"/>
+    </root>
+</configuration>

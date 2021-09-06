@@ -1,0 +1,10 @@
+server:
+  port: 8089
+spring:
+  profiles:
+    active: @profile.active@
+  application:
+    name: mq-hothatch-output
+
+logging:
+  path: /data/logs/${spring.application.name}
