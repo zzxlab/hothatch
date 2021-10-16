@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <conversionRule conversionWord="ip" converterClass="com.hiersun.exception.client.logback.IpConverter"/>
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"/>
+    <!-- 控制台输出日志 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.mybatis" level="INFO"/>
+    <logger name="mybatis.mapper" level="DEBUG"/>
+    <logger name="com.hiersun" level="DEBUG"/>
+    <logger name="org.redisson" level="WARN"/>
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>

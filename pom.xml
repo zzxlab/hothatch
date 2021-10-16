@@ -28,6 +28,7 @@
         <module>hothatch-common</module>
         <module>mq-hothatch-input</module>
         <module>mq-hothatch-output</module>
+        <module>mq-hothatch-adapter</module>
     </modules>
 
     <dependencyManagement>
