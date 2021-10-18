@@ -3,9 +3,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.7.125:3306/message?useUnicode=true&characterEncoding=UTF-8&autoReconnectForPools=true&allowMultiQueries=true
-      username: o2ouser
-      password: ydprzuo2&5fdKG2i
+      url: jdbc:mysql://rm-2zeh9z81t5xg1i3g9.mysql.rds.aliyuncs.com:3306/message?useUnicode=true&characterEncoding=UTF-8&autoReconnectForPools=true&allowMultiQueries=true
+      username: message
+      password: mEssageAdmin2019
       max-active: 100
       min-idle: 5
       initial-size: 5
@@ -22,4 +22,4 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.168.7.126:8761/eureka/,http://192.168.7.113:8761/eureka/
+      defaultZone: http://192.168.4.8:8761/eureka/,http://192.168.4.12:8761/eureka/,http://192.168.4.14:8761/eureka/
