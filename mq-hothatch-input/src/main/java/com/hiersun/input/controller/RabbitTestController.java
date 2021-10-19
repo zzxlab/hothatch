@@ -19,7 +19,7 @@ public class RabbitTestController {
     @GetMapping("/edi")
     public void edi(Integer num) {
         for (int i = 0; i < num; i++) {
-            topicSender.send();
+            topicSender.send(i);
         }
     }
 }
