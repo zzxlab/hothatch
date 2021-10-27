@@ -78,7 +78,7 @@
         <profile>
             <id>prod</id>
             <properties>
-                <resources.active>3-prod</resources.active>
+                <resources.active>4-prod</resources.active>
                 <profile.active>default,prod</profile.active>
             </properties>
         </profile>
