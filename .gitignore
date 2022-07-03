@@ -13,7 +13,7 @@ local.properties
 .loadpath
 .recommenders
 *.jcoDestination
-
+.idea/
 # Eclipse Core
 .project
 
