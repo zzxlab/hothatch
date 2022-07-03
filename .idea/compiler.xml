@@ -15,7 +15,7 @@
     <bytecodeTargetLevel>
       <module name="hothatch" target="1.8" />
       <module name="hothatch-common" target="8" />
-      <module name="mq-hothatch-adapter" target="8" />
+      <module name="mq-hothatch-adapter" target="1.8" />
       <module name="mq-hothatch-input" target="8" />
       <module name="mq-hothatch-output" target="8" />
     </bytecodeTargetLevel>

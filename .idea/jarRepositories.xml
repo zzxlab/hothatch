@@ -7,6 +7,11 @@
       <option name="url" value="http://nexus.dev.com/content/repositories/snapshots/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="aliyun" />
+      <option name="name" value="Hiersun Aliyun Proxy" />
+      <option name="url" value="http://nexus.dev.com/content/repositories/aliyun/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="jcenter" />
       <option name="name" value="Hiersun JCenter Proxy" />
       <option name="url" value="http://nexus.dev.com/content/repositories/jcenter/" />
